@@ -44,8 +44,8 @@ const start = (tokenIds, tag) => {
                 // 核心业务：获取信息 -> 检查防抖 -> 记账 -> 报警
                 const info = stateManager.getMarket(item.asset_id);
                 if (info && stateManager.shouldAlert(item.asset_id)) {
-                    logger.logTrade(config.FILES.LOG_FILE, info, price); // 记账
-                    await telegramBot.sendAlert(info, price);            // 报警
+                    logger.logTrade(config.FILES.SPORTS_LOG_FILE, info, price); // 记账
+                    await telegramBot.sendSportsAlert(info, price);            // 报警
                 }
             }
         } catch (e) { console.error('WS Message Parse Error', e); }

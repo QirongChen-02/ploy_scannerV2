@@ -37,11 +37,20 @@ module.exports = {
             // 4. ⏰ 时间逻辑 (保持原样)
             STARTED_WITHIN_HOURS: 24 
         },
+
+        // 在 STRATEGIES: { ... } 内添加
+        crypto: {
+            ENDING_WITHIN_HOURS: 48,  // bot_crypto 原来使用的逻辑
+            MIN_VOLUME: 20000,
+            PRICE_MIN: 0.1,
+            PRICE_MAX: 0.98
+        },
     },
 
     // 👇 系统文件配置
     FILES: {
-        LOG_FILE: './trade_logs/trades.csv' //the file will be written in Current Working Directory if no given filepath
+        SPORTS_LOG_FILE: './trade_logs/sports_trades.csv', //the file will be written in Current Working Directory if no given filepath
+        CRYPTO_LOG_FILE: './trade_logs/crypto_trades.csv',
     },
     HEADERS: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
