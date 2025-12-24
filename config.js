@@ -31,7 +31,7 @@ module.exports = {
             MIN_VOLUME: 20000, 
 
             // 3. 💰 价格区间 (保持原样)
-            PRICE_MIN: 0.5,
+            PRICE_MIN: 0.90,
             PRICE_MAX: 0.98,
 
             // 4. ⏰ 时间逻辑 (保持原样)
@@ -42,7 +42,7 @@ module.exports = {
         crypto: {
             ENDING_WITHIN_HOURS: 48,  // bot_crypto 原来使用的逻辑
             MIN_VOLUME: 20000,
-            PRICE_MIN: 0.1,
+            PRICE_MIN: 0.90,
             PRICE_MAX: 0.98
         },
     },

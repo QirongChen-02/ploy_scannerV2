@@ -8,4 +8,17 @@ const fetchEvents = async (tag) => {
     return response.data;
 };
 
-module.exports = { fetchEvents }; //导出函数
+const getOrderBook = async (tokenId) => {
+    try {
+        // Polymarket CLOB API 端点
+        const url = `https://clob.polymarket.com/book?token_id=${tokenId}`;
+        // 设置 2秒 超时，捡漏策略不能等太久
+        const response = await axios.get(url, { timeout: 2000 });
+        return response.data;
+    } catch (error) {
+        console.error(`[API] 获取订单簿失败 (Token: ${tokenId}): ${error.message}`);
+        return null;
+    }
+};
+
+module.exports = { fetchEvents,getOrderBook }; //导出函数

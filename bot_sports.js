@@ -87,6 +87,21 @@ async function scanSports() {
 
             for (const market of event.markets) {//每个 event 可能有多个 market
 
+                const q = (market.question || "").toLowerCase();
+                const outcome = (market.outcome || "").toLowerCase(); // 也可以检查 outcome 辅助判断
+            if (
+                    // 1. 排除大小分 (Totals)
+                    q.includes('total') || q.includes('over') || q.includes('under') || 
+                    // 2. 排除让分 (Spreads / Handicap)
+                    q.includes('spread') || q.includes('handicap') || outcome.includes('handicap') ||
+                    // 3. 排除特定时段 (只看全场)
+                    q.includes('quarter') || q.includes('half') || q.includes('1st') || q.includes('2nd') ||
+                    // 4. 排除其他衍生玩法 (比如球员得分 Player Props)
+                    q.includes('points') || q.includes('assist') || q.includes('rebound') || q.includes('score')
+                ) {
+                    // console.log(`  ❌ 过滤掉衍生盘口: ${q}`);
+                    continue; 
+                }
                 const configVolume = strategy.MIN_VOLUME || 2000;
 
                 if (market.volume < configVolume) continue; //跳过小于2000的market
